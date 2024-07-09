@@ -27,7 +27,7 @@
     "react-redux": "^9.1.2",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.24.1",
-    "sonne": "^0.0.0",
+    "sonner": "^1.5.0",
     "sort-by": "^1.2.0",
     "swiper": "^11.1.4",
     "variants": "^0.3.3"
