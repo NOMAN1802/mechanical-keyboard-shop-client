@@ -7,7 +7,6 @@ import img4 from '../../assets/Slider/slider-4.jpg';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import SliderText from './SliderText';
 
-
 const Slider = () => {
 
   const arrowStyles = {
@@ -63,11 +62,13 @@ const Slider = () => {
           </div>
         </Carousel>
       </div>
-      <div className='absolute bottom-10 left-0 w-1/4 p-4 z-10 '>
+      <div className='absolute bottom-10 left-0 w-1/4 p-4 z-10 hidden md:block'>
         <SliderText />
       </div>
+      <div className='block md:hidden mt-4'>
+        <SliderText />
       </div>
-   
+    </div>
   );
 };
 
