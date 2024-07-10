@@ -8,7 +8,7 @@ export const baseApi = createApi({
     endpoints: (builder) => ({
         getProducts: builder.query({
             query: () => ({
-              url: "/movies",
+              url: "/products",
               method: "GET",
             }),
             providesTags: ["products"],
@@ -16,4 +16,4 @@ export const baseApi = createApi({
     }),
   });
   
-  export const {} = baseApi;
+  export const {useGetProductsQuery} = baseApi;

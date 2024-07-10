@@ -10,7 +10,7 @@ const Service = () => {
     <div>
       <SectionTitle 
         subHeading={"Facilities provided by us"}
-        heading={"ClickCraft Special"}
+        heading={"ClickCraft Specialty"}
       >
       </SectionTitle>
 
@@ -27,7 +27,7 @@ const Service = () => {
             <div>
             <p className="text-3xl p-2 text-slate-500"><FaShippingFast /></p>
             <p className="text-xl p-2 font-semibold text-slate-600">Free Shipping</p>
-            <p className="text-thin p-2 text-slate-600">Order Over $500 </p>
+            <p className="text-small p-1 text-slate-600">Order Over $500 </p>
             </div>
             <div>
             <p className="text-5xl p-2 text-slate-500 opacity-25"><FaShippingFast /></p>
@@ -48,7 +48,7 @@ const Service = () => {
                 <div>
                 <p className="text-3xl p-2 text-slate-500"><FaWallet /></p>
                 <p className="text-xl p-2 font-semibold text-slate-600">Quick Payment</p>
-                <p className="text-thin p-2 text-slate-600">100% Secure</p>
+                <p className="text-small p-1 text-slate-600">100% Secure</p>
                 </div>
                 <div>
                 <p className="text-5xl p-2 text-slate-500 opacity-25"><FaWallet /></p>
@@ -69,7 +69,7 @@ const Service = () => {
             <div>
             <p className="text-3xl p-2 text-slate-500"><AiOutlineDollar /></p>
             <p className="text-xl p-2 font-semibold text-slate-600">Big Cashback</p>
-            <p className="text-thin p-2 text-slate-600">Over 40% Cashback</p>
+            <p className="text-small p-1 text-slate-600">Over 40% Cashback</p>
             </div>
             <div>
             <p className="text-5xl p-2 text-slate-500 opacity-25"><AiOutlineDollar /></p>
@@ -85,12 +85,12 @@ const Service = () => {
           whileHover={{ scale: 1.05 }}
           className="transition-transform duration-300"
         >
-          <Card className="bg-gradient-to-l from-sky-300 to-slate-300 p-4 rounded-2xl">
+          <Card className="bg-gradient-to-l from-teal-300 to-slate-300 p-4 rounded-2xl">
             <div className="flex justify-between items-start">
                 <div>
                 <p className="text-3xl p-2 text-slate-500"><FaRegMessage /></p>
                 <p className="text-xl p-2 font-semibold text-slate-600">24/7 support</p>
-                <p className="text-thin p-2 text-slate-600">Ready For You</p>
+                <p className="text-sm p-1 text-slate-600">Ready For You</p>
                 </div>
                 <div>
                 <p className="text-5xl p-2 text-slate-500 opacity-25"><FaRegMessage /></p>  
