@@ -14,8 +14,11 @@ const ProductCard = ({ product }: { product: TProduct }) => {
       <img src={product.image} alt="" className="w-full h-52 object-cover" />
 
       <div className="absolute top-3 right-3">
-        <Button label="Add to Cart" small />
-      </div>
+     <button className="relative -right-2 -skew-x-12 bg-slate-900 p-1 text-sm text-white opacity-90 hover:bg-slate-700     hover:opacity-100 focus:outline-none cursor-pointer">
+     Add to Cart
+     </button>
+       </div>
+
       <div className="absolute bottom-40 left-0">
         <p className="relative -right-1 -skew-x-6 bg-slate-500 px-4 py-2 font-bold text-white opacity-25">
           {product?.category}
