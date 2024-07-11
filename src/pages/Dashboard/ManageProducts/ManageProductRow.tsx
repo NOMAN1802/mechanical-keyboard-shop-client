@@ -4,7 +4,9 @@ import { FaSync, FaTrash } from 'react-icons/fa';
 import UpdateProductModal from '../../../components/Modal/UpdateProductModal';
 import { toast } from 'sonner';
 import { useDeleteProductMutation } from '../../../redux/api/baseApi';
-import { TProduct } from '../../../types';
+// import { TProduct } from '../../../types';
+
+
 
 const ManageProductRow = ({ product }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +28,7 @@ const ManageProductRow = ({ product }) => {
   };
 
   return (
-    <tr className="border-b border-gray-200 hover:bg-gray-100">
+    <tr className="border-b border-slate-200 hover:bg-slate-100">
       <td className="py-3 px-6 text-left">
         <div className="flex items-center">
           <div className="avatar">
@@ -47,7 +49,7 @@ const ManageProductRow = ({ product }) => {
       <td className="py-3 px-6 text-left">
         <button
           onClick={() => setIsOpen(true)}
-          className="text-blue-500 hover:text-blue-700"
+          className="text-slate-500 hover:text-slate-700"
         >
           <FaTrash className="inline-block" /> Delete
         </button>
@@ -61,7 +63,7 @@ const ManageProductRow = ({ product }) => {
       <td className="py-3 px-6 text-left">
         <button
           onClick={() => setIsEditModalOpen(true)}
-          className="text-blue-500 hover:text-blue-700"
+          className="text-slate-500 hover:text-slate-700"
         >
           <FaSync className="inline-block" /> Update
         </button>

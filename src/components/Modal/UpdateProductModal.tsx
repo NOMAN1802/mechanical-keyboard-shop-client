@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal as AntdModal, Button } from 'antd';
+import Modal from '../../components/Modal/Modal'; // Use your custom Modal component
 import UpdateProductForm from '../Form/UpdateProductForm';
 import { toast } from 'sonner';
 import { useUpdateProductMutation } from '../../redux/api/baseApi';
@@ -14,17 +14,12 @@ interface UpdateProductModalProps {
 
 const UpdateProductModal = ({ isOpen, setIsEditModalOpen, product, id }: UpdateProductModalProps) => {
   const [loading, setLoading] = useState(false);
-  const [productData, setProductData] = useState(product);
-
   const [updateProduct] = useUpdateProductMutation();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const updatedData = { ...productData };
-    delete updatedData._id;
+  const handleSubmit = async (data) => {
     setLoading(true);
     try {
-      await updateProduct({ id, ...updatedData }).unwrap();
+      await updateProduct({ id, data }).unwrap();
       toast.success("Product updated successfully");
       setIsEditModalOpen(false);
     } catch (error) {
@@ -35,26 +30,17 @@ const UpdateProductModal = ({ isOpen, setIsEditModalOpen, product, id }: UpdateP
   };
 
   return (
-    <AntdModal
+    <Modal
+      isOpen={isOpen}
+      setIsOpen={setIsEditModalOpen}
       title="Update Product"
-      visible={isOpen}
-      onCancel={() => setIsEditModalOpen(false)}
-      footer={[
-        <Button key="back" onClick={() => setIsEditModalOpen(false)}>
-          Cancel
-        </Button>,
-        <Button key="submit" type="primary" loading={loading} onClick={handleSubmit}>
-          Update
-        </Button>,
-      ]}
-      centered
     >
       <UpdateProductForm
         handleSubmit={handleSubmit}
-        productData={productData}
-        setProductData={setProductData}
+        loading={loading}
+        defaultValues={product}
       />
-    </AntdModal>
+    </Modal>
   );
 };
 

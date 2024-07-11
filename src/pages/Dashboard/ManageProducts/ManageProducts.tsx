@@ -1,9 +1,9 @@
 import Container from '../../../components/Container/Container';
-import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import { useLocation } from 'react-router-dom';
 import Heading from '../../../components/Heading/Heading';
 import { useGetProductsQuery } from '../../../redux/api/baseApi';
 import ManageProductRow from './ManageProductRow';
+import PageTitle from '../../../components/PageTitle/PageTitle';
 
 const ManageProducts = () => {
   const location = useLocation();
@@ -19,7 +19,7 @@ const ManageProducts = () => {
 
   return (
     <Container>
-      <SectionTitle
+      <PageTitle
         subHeading={
           location.pathname === '/dashboard/manage-products'
             ? 'Manage Product'
@@ -29,9 +29,9 @@ const ManageProducts = () => {
       />
       {products?.data && products?.data?.length > 0 ? (
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white shadow-md rounded my-6">
+          <table className="min-w-full bg-slate-200 shadow-md rounded my-6">
             {/* Head */}
-            <thead className="bg-gray-800 text-white">
+            <thead className="bg-slate-700 text-slate-100">
               <tr>
                 <th className="py-3 px-6 text-left">Photo</th>
                 <th className="py-3 px-6 text-left">Title</th>
@@ -43,7 +43,7 @@ const ManageProducts = () => {
               </tr>
             </thead>
             {/* Body */}
-            <tbody className="text-gray-700">
+            <tbody className="text-slate-700">
               {products?.data?.map((product) => (
                 <ManageProductRow key={product._id} product={product} />
               ))}

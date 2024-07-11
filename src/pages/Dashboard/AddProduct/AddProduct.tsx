@@ -2,11 +2,11 @@
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { toast } from 'sonner';
-import { TProduct, TAvailableQuantity } from '../../../types';
-import SectionTitle from '../../../components/SectionTitle/SectionTitle';
+import { TProduct } from '../../../types';
 import AddProductForm from '../../../components/Form/AddProductForm';
 import { useAddProductMutation } from '../../../redux/api/baseApi';
 import { useNavigate } from 'react-router-dom';
+import PageTitle from '../../../components/PageTitle/PageTitle';
 
 type FormValues = {
   title: string;
@@ -58,7 +58,7 @@ const AddProduct = () => {
 
   return (
     <div>
-      <SectionTitle heading="Add Product" subHeading="Add Products" />
+      <PageTitle heading="Add Product" subHeading="Add Products" />
       <AddProductForm 
            onSubmit={handleSubmit(onSubmit)} t
            register={register}

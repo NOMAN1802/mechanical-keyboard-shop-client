@@ -7,6 +7,7 @@ import ContactUs from "../pages/ContactUs/ContactUs";
 import AddProduct from "../pages/Dashboard/AddProduct/AddProduct";
 import ManageProducts from "../pages/Dashboard/ManageProducts/ManageProducts";
 import DashboardLayout from "../layout/DashboardLayout";
+import ProductDetails from "../pages/ProductDetails/ProductDetails";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
                 path:'/products',
                 element:<Products/>
             },
+            {
+                path: "/products/:id",
+                element: <ProductDetails />,
+                loader: ({params}) => fetch(`http://localhost:5000/api/products/${params.id}`)
+              },
             {
                 path:'/about-us',
                 element:<AboutUs/>

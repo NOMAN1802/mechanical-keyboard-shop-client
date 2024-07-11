@@ -1,23 +1,21 @@
-/* eslint-disable no-unused-vars */
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, ReactNode } from 'react';
 
 type TModalProps = {
     isOpen: boolean;
-    setIsOpen: boolean;
+    setIsOpen: (isOpen: boolean) => void;
     title: string;
     children: ReactNode;
 }
 
-export default function Modal({ isOpen, setIsOpen, title, children } :TModalProps) {
+export default function Modal({ isOpen, setIsOpen, title, children }: TModalProps) {
   function closeModal() {
     setIsOpen(false);
   }
 
   return (
     <>
-      
-      <Transition appear show={isOpen }  as={Fragment} className="z-[1000]">
+      <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
