@@ -4,9 +4,9 @@ import Home from "../pages/Home/Home";
 import Products from "../pages/Products/Products";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import ContactUs from "../pages/ContactUs/ContactUs";
-import Dashboard from "../pages/Dashboard/Dashboard";
-import AddProduct from "../pages/AddProduct/AddProduct";
-import ManageProducts from "../pages/ManageProducts/ManageProducts";
+import AddProduct from "../pages/Dashboard/AddProduct/AddProduct";
+import ManageProducts from "../pages/Dashboard/ManageProducts/ManageProducts";
+import DashboardLayout from "../layout/DashboardLayout";
 
 const router = createBrowserRouter([
     {
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: <DashboardLayout/>,
         children: [
         
           
