@@ -49,8 +49,8 @@ const UpdateProductForm = ({ handleSubmit, loading, defaultValues }) => {
               className='w-full px-4 py-3 border-rose-300 focus:outline-rose-500 rounded-md'
               {...register('category', { required: true })}
             >
-              <option value='Regular'>Regular</option>
-              <option value='Featured'>Featured</option>
+              <option value='regular'>Regular</option>
+              <option value='featured'>Featured</option>
             </select>
             {errors.category && <p className='text-red-600'>Category is required</p>}
           </div>

@@ -12,6 +12,14 @@ category: string;
 availableQuantity: number;
 };
 
+export interface Filters {
+  category: string;
+  minPrice: string;
+  maxPrice: string;
+}
+
+export type SortOption = 'Price: Low to High' | 'Price: High to Low';
+
 export type QueryParams = {
   name?: string;
   brand?: string; 
