@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import DeleteModal from '../../../components/Modal/DeleteModal';
 import { FaSync, FaTrash } from 'react-icons/fa';
@@ -13,15 +15,12 @@ const ManageProductRow = ({ product }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [deleteProduct] = useDeleteProductMutation();
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
 
   const closeModal = () => {
     setIsOpen(false);
   };
 
-  const modalHandler = (item) => {
+  const modalHandler = (item :any) => {
     deleteProduct(item._id);
     toast.success('Product deleted successfully');
     closeModal();

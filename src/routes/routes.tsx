@@ -8,6 +8,7 @@ import AddProduct from "../pages/Dashboard/AddProduct/AddProduct";
 import ManageProducts from "../pages/Dashboard/ManageProducts/ManageProducts";
 import DashboardLayout from "../layout/DashboardLayout";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
+import Cart from "../pages/Cart/Cart";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
             {
                 path:'/products',
                 element:<Products/>
+            },
+            {
+                path:'/cart',
+                element:<Cart/>
             },
             {
                 path: "/products/:id",

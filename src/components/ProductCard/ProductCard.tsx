@@ -5,20 +5,25 @@ import { MdProductionQuantityLimits } from "react-icons/md";
 import { FaDollarSign } from "react-icons/fa";
 import { TProduct } from "../../types";
 import StarRating from "../StarRating/StarRating";
-import { useAppDispatch } from "../../redux/hooks";
 import { addToCart } from "../../redux/features/cart/cartSlice";
+import { useAppDispatch } from "../../redux/hooks";
+import { toast } from "sonner";
+
 
 const ProductCard = ({ product }: { product: TProduct }) => {
   console.log('Product in ProductCard:', product);
-  const dispatch = useAppDispatch()
-   
+  const dispatch = useAppDispatch();
 
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+    toast.success(`${product?.title} added in to cart`)
+  };
   return (
     <div className="relative rounded overflow-hidden shadow-xl transform hover:scale-110 duration-100">
       <img src={product.image} alt="" className="w-full h-52 object-cover" />
 
       <div className="absolute top-3 right-3">
-     <button onClick={()=> dispatch(addToCart(product))} className="relative -right-2 -skew-x-12 bg-slate-900 p-1 text-sm text-white opacity-90 hover:bg-slate-700     hover:opacity-100 focus:outline-none cursor-pointer">
+     <button onClick={handleAddToCart} className="relative -right-2 -skew-x-12 bg-slate-900 p-1 text-sm text-white opacity-90 hover:bg-slate-700     hover:opacity-100 focus:outline-none cursor-pointer">
      Add to Cart
      </button>
        </div>

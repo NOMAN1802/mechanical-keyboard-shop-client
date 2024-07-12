@@ -1,79 +1,119 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { toast } from 'sonner';
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { toast } from "sonner";
 
-interface CartItem {
+export interface IProduct {
   _id: string;
-  number: number;
-  price: number;
   image: string;
-  title: string;
-  quantity: number;
+  name: string;
+  brand: string;
+  availableQuantity: number;
+  price: number;
+  rating: number;
+  description: string;
 }
 
-interface CartState {
-  cart: CartItem[];
-  totalQuantity: number;
-  totalPrice: number;
+// Cart item interface
+export interface ICartItem extends IProduct {
+  cartQuantity: number;
 }
 
-const initialState: CartState = {
-  cart: [],
-  totalQuantity: 0,
-  totalPrice: 0,
+// Initial state interface
+export interface ICartState {
+  items: ICartItem[];
+  totalOrderPrice: number;
+}
+
+const initialState: ICartState = {
+  items: [],
+  totalOrderPrice: 0,
 };
 
-const cartSlice = createSlice({
-  name: 'cart',
+// Cart slice
+export const cartSlice = createSlice({
+  name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<CartItem>) => {
-      const find = state.cart.findIndex((item) => item._id === action.payload._id);
-      if (find >= 0) {
-        state.cart[find].number += 1;
-        toast.success('Product Added');
+    addToCart: (state, action: PayloadAction<IProduct>) => {
+      const product = action.payload;
+      const existingItemIndex = state.items.findIndex((item) => item._id === product._id);
+
+      if (existingItemIndex !== -1) {
+        // If the product already exists in the cart, increase its cart quantity
+        const existingItem = state.items[existingItemIndex];
+        if (existingItem.availableQuantity > 0) {
+          state.items[existingItemIndex] = {
+            ...existingItem,
+            cartQuantity: existingItem.cartQuantity + 1,
+          };
+          state.totalOrderPrice += product.price;
+        } else {
+          toast.error('Product is out of stock');
+        }
       } else {
-        state.cart.push({ ...action.payload, number: 1 }); 
+        // If the product is not in the cart, add it with cart quantity 1
+        if (product.availableQuantity > 0) {
+          state.items.push({ ...product, cartQuantity: 1 });
+          state.totalOrderPrice += product.price;
+        } else {
+          toast.error('Product is out of stock');
+        }
       }
     },
-    getCartTotal: (state) => {
-      const { totalQuantity, totalPrice } = state.cart.reduce(
-        (cartTotal, cartItem) => {
-          const { price, number } = cartItem;
-          const itemTotal = price * number;
-          cartTotal.totalPrice += itemTotal;
-          cartTotal.totalQuantity += number;
-          return cartTotal;
-        },
-        {
-          totalPrice: 0,
-          totalQuantity: 0,
-        }
-      );
-      state.totalPrice = parseFloat(totalPrice.toFixed(2));
-      state.totalQuantity = totalQuantity;
+
+    removeFromCart: (state, action: PayloadAction<string>) => {
+      const productId = action.payload;
+      const existingItem = state.items.find((item) => item._id === productId);
+
+      if (existingItem) {
+        state.totalOrderPrice -= existingItem.price * existingItem.cartQuantity;
+        existingItem.availableQuantity += existingItem.cartQuantity;
+        state.items = state.items.filter((item) => item._id !== productId);
+      }
     },
-    removeItem: (state, action: PayloadAction<string>) => {
-      state.cart = state.cart.filter((item) => item._id !== action.payload);
-    },
-    increaseItemQuantity: (state, action: PayloadAction<string>) => {
-      state.cart = state.cart.map((item) => {
-        if (item._id === action.payload) {
-          return { ...item, number: item.number + 1 };
+    incrementQuantity: (state, action: PayloadAction<string>) => {
+      const productId = action.payload;
+      const existingItem = state.items.find((item) => item._id === productId);
+
+      if (existingItem) {
+        if (existingItem.availableQuantity > 0) {
+          existingItem.cartQuantity += 1;
+          existingItem.availableQuantity -= 1;
+          state.totalOrderPrice += existingItem.price;
+        } else {
+          toast.error('Product is out of stock');
         }
-        return item;
-      });
+      }
     },
-    decreaseItemQuantity: (state, action: PayloadAction<string>) => {
-      state.cart = state.cart.map((item) => {
-        if (item._id === action.payload) {
-          return { ...item, number: item.number - 1 };
+    decrementQuantity: (state, action: PayloadAction<string>) => {
+      const productId = action.payload;
+      const existingItem = state.items.find((item) => item._id === productId);
+
+      if (existingItem) {
+        if (existingItem.cartQuantity > 1) {
+          existingItem.cartQuantity -= 1;
+          existingItem.availableQuantity += 1;
+          state.totalOrderPrice -= existingItem.price;
+        } else {
+          state.totalOrderPrice -= existingItem.price;
+          existingItem.availableQuantity += 1;
+          state.items = state.items.filter((item) => item._id !== productId);
         }
-        return item;
-      });
+      }
+    },
+    resetCart: (state) => {
+      state.items = [];
+      state.totalOrderPrice = 0;
     },
   },
 });
 
-export const { addToCart, getCartTotal, removeItem, increaseItemQuantity, decreaseItemQuantity } = cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  incrementQuantity,
+  decrementQuantity,
+  resetCart,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
