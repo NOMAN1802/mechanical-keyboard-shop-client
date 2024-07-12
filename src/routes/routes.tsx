@@ -9,6 +9,8 @@ import ManageProducts from "../pages/Dashboard/ManageProducts/ManageProducts";
 import DashboardLayout from "../layout/DashboardLayout";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import Cart from "../pages/Cart/Cart";
+import CheckOut from "../pages/CheckOut/CheckOut";
+import ConfirmOrder from "../pages/ConfirmOrdder/ConfirmOrder";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
                 path:'/cart',
                 element:<Cart/>
             },
+            {
+                path: "/checkout",
+                element: <CheckOut />,
+              },
+              {
+                path: '/confirm-order',
+                element:<ConfirmOrder/>
+              },
             {
                 path: "/products/:id",
                 element: <ProductDetails />,

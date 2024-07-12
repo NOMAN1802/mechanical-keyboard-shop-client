@@ -65,16 +65,16 @@ const SingleCart = ({ cart }: TTodoCartProps) => {
       <td className="py-3 px-6 text-left">{cart?.title}</td>
       <td className="py-3 px-6 text-left">{cart?.availableQuantity}</td>
       <td className="py-3 px-6 text-left">{cart?.price}</td>
-      <td className="py-3 px-6 text-left">
-      <div className="px-2 py-1 rounded-md flex items-center w-full   border border-darkText">
+      <td className="text-left">
+      <div className=" rounded-md flex items-center justify-center w-2/3 border border-slate-600">
           <FaPlus
             onClick={() => handleIncrease(cart?._id)}
-            className="text-slate-600 mx-2 text-sm cursor-pointer"
+            className="text-slate-600 mx-4 text-sm cursor-pointer"
           />
-          <div className="text-darkText  text-3xl"> | </div>
+          <div className="text-slate-600  text-2xl">|</div>
           <FaMinus
             onClick={() => handleDecrease(cart?._id)}
-            className="text-slate mx-2  text-sm cursor-pointer"
+            className="text-slate mx-4  text-sm cursor-pointer"
           />
         </div>
       </td>
