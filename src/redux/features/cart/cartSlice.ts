@@ -1,65 +1,79 @@
-/* eslint-disable prefer-const */
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { toast } from "sonner";
-type TCartItem =  {
-    id: string;
-    title: string;
-    price: number;
-    quantity: number; 
-  }
-  
- 
-  type TCartState = {
-    cart: TCartItem[];
-    amount: number;
-    total: number;
-    loading: boolean;
-  }
-  
-  const initialState: TCartState = {
-    cart: [],
-    amount: 0,
-    total: 0,
-    loading: false
-  }
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { toast } from 'sonner';
+
+interface CartItem {
+  _id: string;
+  number: number;
+  price: number;
+  image: string;
+  title: string;
+  quantity: number;
+}
+
+interface CartState {
+  cart: CartItem[];
+  totalQuantity: number;
+  totalPrice: number;
+}
+
+const initialState: CartState = {
+  cart: [],
+  totalQuantity: 0,
+  totalPrice: 0,
+};
 
 const cartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<TCartItem>) => {
-      const itemIndex = state.cart.findIndex(item => item.id === action.payload.id);
-      if (itemIndex >= 0) {
-        state.cart[itemIndex].quantity += 1;
-        toast.success('Increased by 1');
+    addToCart: (state, action: PayloadAction<CartItem>) => {
+      const find = state.cart.findIndex((item) => item._id === action.payload._id);
+      if (find >= 0) {
+        state.cart[find].number += 1;
+        toast.success('Product Added');
       } else {
-        let tem = { ...action.payload, quantity: 1 };
-        state.cart = [...state.cart, tem];
-        toast.success('Added to Cart!');
+        state.cart.push({ ...action.payload, number: 1 }); 
       }
     },
-    removeFromCart: (state, action: PayloadAction<string>) => {
-      const removeItem = state.cart.filter(item => item.id !== action.payload);
-      state.cart = removeItem;
+    getCartTotal: (state) => {
+      const { totalQuantity, totalPrice } = state.cart.reduce(
+        (cartTotal, cartItem) => {
+          const { price, number } = cartItem;
+          const itemTotal = price * number;
+          cartTotal.totalPrice += itemTotal;
+          cartTotal.totalQuantity += number;
+          return cartTotal;
+        },
+        {
+          totalPrice: 0,
+          totalQuantity: 0,
+        }
+      );
+      state.totalPrice = parseFloat(totalPrice.toFixed(2));
+      state.totalQuantity = totalQuantity;
     },
-    incrementItem: (state, action: PayloadAction<string>) => {
-      const indexCart = state.cart.findIndex(item => item.id === action.payload);
-      if (state.cart[indexCart].quantity >= 1) {
-        state.cart[indexCart].quantity += 1;
-      }
+    removeItem: (state, action: PayloadAction<string>) => {
+      state.cart = state.cart.filter((item) => item._id !== action.payload);
     },
-    decrementItem: (state, action: PayloadAction<string>) => {
-      const indexCart = state.cart.findIndex(item => item.id === action.payload);
-      if (state.cart[indexCart].quantity >= 1) {
-        state.cart[indexCart].quantity -= 1;
-      }
+    increaseItemQuantity: (state, action: PayloadAction<string>) => {
+      state.cart = state.cart.map((item) => {
+        if (item._id === action.payload) {
+          return { ...item, number: item.number + 1 };
+        }
+        return item;
+      });
     },
-    clearCart: (state) => {
-      state.cart = [];
+    decreaseItemQuantity: (state, action: PayloadAction<string>) => {
+      state.cart = state.cart.map((item) => {
+        if (item._id === action.payload) {
+          return { ...item, number: item.number - 1 };
+        }
+        return item;
+      });
     },
-  }
+  },
 });
 
-export const { addToCart, removeFromCart, clearCart, decrementItem, incrementItem } = cartSlice.actions;
+export const { addToCart, getCartTotal, removeItem, increaseItemQuantity, decreaseItemQuantity } = cartSlice.actions;
 
 export default cartSlice.reducer;

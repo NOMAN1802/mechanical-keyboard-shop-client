@@ -1,12 +1,21 @@
 /* eslint-disable no-unused-vars */
 
 import { Link, NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { getCartTotal } from '../../redux/features/cart/cartSlice';
 
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const dispatch = useAppDispatch()
+  const {cart , totalQuantity} = useAppSelector((state)=> state.allCart)
+  useEffect(() => {
+    dispatch(getCartTotal())
+  }, [cart,dispatch]) 
+  
 
   const menuVariants = {
     open: {
@@ -34,6 +43,7 @@ const NavBar = () => {
       <div className='lg:h-10vh flex flex-col lg:flex-row lg:justify-between lg:p-5 px-6 lg:px-20 border-b'>
         <div className='flex items-center justify-between'>
         <button className='lg:hidden focus:outline-none flex-col-reverse '>
+          {totalQuantity}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -226,6 +236,7 @@ const NavBar = () => {
             stroke="currentColor"
             className="size-6"
           >
+            {cart.length}
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
