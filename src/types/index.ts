@@ -2,6 +2,7 @@
 
 export type TProduct = {
 _id: string;
+name?:string;
 image: string; 
 title: string; 
 brand: string; 
@@ -30,4 +31,16 @@ export type QueryParams = {
     productId: string;
     price: number;
     quantity: number;
+  };
+
+  export type FormValues = {
+    _id: string;
+    title: string;
+    brand: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
+    rating: number;
+    availableQuantity: number;
   };

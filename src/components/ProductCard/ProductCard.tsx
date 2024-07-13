@@ -3,11 +3,13 @@ import Button from "../Button/Button";
 import { FaLandmark } from "react-icons/fa6";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { FaDollarSign } from "react-icons/fa";
-import { TProduct } from "../../types";
 import StarRating from "../StarRating/StarRating";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { toast } from "sonner";
+import { TProduct } from "../../types";
+
+
 
 
 const ProductCard = ({ product }: { product: TProduct }) => {
@@ -15,6 +17,8 @@ const ProductCard = ({ product }: { product: TProduct }) => {
   const dispatch = useAppDispatch();
 
   const handleAddToCart = () => {
+   
+    
     dispatch(addToCart(product));
     toast.success(`${product?.title} added in to cart`)
   };

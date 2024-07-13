@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { FaUsersGear, FaHome } from 'react-icons/fa';
+import {  FaHome } from 'react-icons/fa';
 import { IoBagAddSharp } from "react-icons/io5";
 import { AiOutlineBars } from 'react-icons/ai';
 import { MdManageAccounts } from 'react-icons/md';
@@ -22,7 +22,7 @@ const Sidebar = () => {
   return (
     <Container>
       {/* Small Screen Navbar */}
-      <div className='bg-slate-100 text-slate-600 flex justify-between md:hidden'>
+      <div className='bg-slate-200 text-slate-600 flex justify-between md:hidden'>
         <div className='block cursor-pointer p-4 font-bold '>
           <Link to='/' className='flex-grow flex justify-center'>
             <h2 className='text-3xl font-bold text-slate-400 text-center'>
@@ -63,7 +63,7 @@ const Sidebar = () => {
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ duration: 0.3 }}
-            className='z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-slate-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform md:translate-x-0 transition duration-200 ease-in-out'
+            className='z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-slate-200 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform md:translate-x-0 transition duration-200 ease-in-out'
           >
             <div>
               {/* Branding & Profile Info */}
@@ -114,7 +114,7 @@ const Sidebar = () => {
       </AnimatePresence>
 
       {/* Always visible sidebar for large screens */}
-      <div className='hidden md:flex md:fixed md:flex-col md:justify-between md:overflow-x-hidden md:bg-slate-100 md:w-64 md:space-y-6 md:px-2 md:py-4 md:inset-y-0 md:left-0'>
+      <div className='hidden md:flex md:fixed md:flex-col md:justify-between md:overflow-x-hidden md:bg-slate-200 md:w-64 md:space-y-6 md:px-2 md:py-4 md:inset-y-0 md:left-0'>
         <div>
           {/* Branding & Profile Info */}
           <Link to='/' className='flex-grow flex justify-center'>

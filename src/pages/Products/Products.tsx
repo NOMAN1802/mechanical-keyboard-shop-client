@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { useState, useEffect } from 'react';
 import Container from '../../components/Container/Container';
 import ProductCard from '../../components/ProductCard/ProductCard';

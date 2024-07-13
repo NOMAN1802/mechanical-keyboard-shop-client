@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Modal from '../../components/Modal/Modal'; // Use your custom Modal component
+import Modal from '../../components/Modal/Modal'; 
 import UpdateProductForm from '../Form/UpdateProductForm';
 import { toast } from 'sonner';
 import { useUpdateProductMutation } from '../../redux/api/baseApi';
@@ -16,7 +16,7 @@ const UpdateProductModal = ({ isOpen, setIsEditModalOpen, product, id }: UpdateP
   const [loading, setLoading] = useState(false);
   const [updateProduct] = useUpdateProductMutation();
 
-  const handleSubmit = async (data) => {
+  const handleSubmit = async (data : TProduct) => {
     setLoading(true);
     try {
       await updateProduct({ id, data }).unwrap();

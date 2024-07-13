@@ -1,26 +1,17 @@
 /* eslint-disable no-unused-vars */
-import { SubmitHandler, UseFormRegister, FieldErrors } from 'react-hook-form';
+import { FormEventHandler } from 'react';
+import {  UseFormRegister, FieldErrors} from 'react-hook-form';
 import { TbFidgetSpinner } from 'react-icons/tb';
+import { FormValues } from '../../types';
 
-type FormValues = {
-  title: string;
-  brand: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  availableQuantity:number;
-  rating: number;
-};
-
-type AddProductFormProps = {
-  onSubmit: SubmitHandler<FormValues>;
+interface AddProductFormProps {
+  onSubmit?: FormEventHandler<HTMLFormElement> | undefined;
   register: UseFormRegister<FormValues>;
   errors: FieldErrors<FormValues>;
   loading: boolean;
-};
+}
 
-const AddProductForm = ({ onSubmit, register, errors, loading }: AddProductFormProps) => {
+const AddProductForm: React.FC<AddProductFormProps> = ({ onSubmit, register, errors, loading }) => {
   return (
     <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-slate-800 rounded-xl bg-gray-50">
       <form onSubmit={onSubmit} className="space-y-6 w-full max-w-2xl p-6">

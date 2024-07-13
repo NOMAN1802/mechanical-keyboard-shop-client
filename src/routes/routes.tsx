@@ -40,7 +40,7 @@ const router = createBrowserRouter([
             {
                 path: "/products/:id",
                 element: <ProductDetails />,
-                loader: ({params}) => fetch(`http://localhost:5000/api/products/${params.id}`)
+                loader: ({params}) => fetch(`https://click-craft-server.vercel.app/api/products/${params.id}`)
               },
             {
                 path:'/about-us',

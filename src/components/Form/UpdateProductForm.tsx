@@ -1,15 +1,33 @@
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { TbFidgetSpinner } from "react-icons/tb";
 
-const UpdateProductForm = ({ handleSubmit, loading, defaultValues }) => {
-  const { register, handleSubmit: formHandleSubmit, formState: { errors } } = useForm({
+type FormValues = {
+  _id:string;
+  title: string;
+  brand: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: number;
+  availableQuantity: number;
+};
+
+interface UpdateProductFormProps {
+  handleSubmit: SubmitHandler<FormValues>;
+  loading: boolean;
+  defaultValues: FormValues;
+}
+
+const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ handleSubmit, loading, defaultValues }) => {
+  const { register, handleSubmit: formHandleSubmit, formState: { errors } } = useForm<FormValues>({
     defaultValues
   });
 
   return (
     <form onSubmit={formHandleSubmit((data) => {
-      data.price = parseFloat(data.price);
-      data.rating = parseFloat(data.rating);
+      data.price = parseFloat(data.price.toString());
+      data.rating = parseFloat(data.rating.toString());
       handleSubmit(data);
     })}>
       <div className='grid grid-cols-1 gap-10'>
@@ -54,6 +72,19 @@ const UpdateProductForm = ({ handleSubmit, loading, defaultValues }) => {
             </select>
             {errors.category && <p className='text-red-600'>Category is required</p>}
           </div>
+          <div className='space-y-1 text-sm'>
+            <label htmlFor='rating' className='block text-gray-600'>
+              Rating
+            </label>
+            <input
+              className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
+              {...register('rating', { required: true })}
+              id='rating'
+              type='text'
+              placeholder='Rating'
+            />
+            {errors.rating && <p className='text-red-600'>Rating is required</p>}
+          </div>
         </div>
         <div className='flex justify-between gap-2'>
           <div className='space-y-1 text-sm'>
@@ -87,20 +118,6 @@ const UpdateProductForm = ({ handleSubmit, loading, defaultValues }) => {
 
         <div className='flex justify-between gap-2'>
           <div className='space-y-1 text-sm'>
-            <label htmlFor='rating' className='block text-gray-600'>
-              Rating
-            </label>
-            <input
-              className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-              {...register('rating', { required: true })}
-              id='rating'
-              type='text'
-              placeholder='Rating'
-            />
-            {errors.rating && <p className='text-red-600'>Rating is required</p>}
-          </div>
-
-          <div className='space-y-1 text-sm'>
             <label htmlFor='image' className='block text-gray-600'>
               Image URL
             </label>
@@ -119,7 +136,7 @@ const UpdateProductForm = ({ handleSubmit, loading, defaultValues }) => {
       <div className='mt-6'>
         <button
           type='submit'
-          className='w-full px-6 py-3 rounded-md bg-rose-500 text-white'
+          className='w-full px-6 py-3 rounded-md bg-slate-600 text-white'
         >
           {loading ? <TbFidgetSpinner className='m-auto animate-spin' size={24} /> : 'Update Product'}
         </button>

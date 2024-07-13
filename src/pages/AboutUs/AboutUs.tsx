@@ -1,3 +1,4 @@
+import Collaboration from "../../components/Collaboration/Collaboration";
 import Container from "../../components/Container/Container";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import CountUp from 'react-countup';
@@ -16,11 +17,11 @@ const AboutUs = () => {
                     </div>
                 </div>
                 <div className='md:w-1/2 p-4'>
-                    <h1 className='md:text-4xl text-2xl font-semibold  text-blue-950 mb-2'>
-                        Whether you want to learn or to share what you know you’ve come to the right place
+                    <h1 className='md:text-4xl text-2xl font-semibold  text-slate-8000 mb-2'>
+                        Whether you want to explore you’ve come to the right place
                     </h1>
-                    <p className='md:text-xl mt-4 text-lg'>
-                        World-class training and development programs developed by top teachers. Build skills with courses, certificates, and degrees online from world-class universities and companies.
+                    <p className='md:text-xl mt-4 text-slate-600 text-lg'>
+                    ClickCraft is a premier e-commerce company specializing in high-quality mechanical keyboards. Renowned for its vast selection of top brands and innovative designs, ClickCraft caters to both casual users and gaming enthusiasts. With a commitment to excellence, the company ensures each keyboard combines durability, functionality, and style. Exceptional customer service and competitive pricing make ClickCraft a trusted name in the industry. Elevate your typing and gaming experience with ClickCraft's curated collection of mechanical keyboards.
                     </p>
                 </div>
             </div>
@@ -65,8 +66,11 @@ const AboutUs = () => {
 
                     </div>
                 </div>
+               
             </div>
-            
+            <div>
+                <Collaboration/>
+            </div>
 
         </Container>
     );

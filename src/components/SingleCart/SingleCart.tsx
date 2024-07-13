@@ -1,9 +1,10 @@
-import { toast } from "sonner";
+// import { toast } from "sonner";
 import { useAppDispatch } from "../../redux/hooks";
 import { decrementQuantity, incrementQuantity, removeFromCart } from "../../redux/features/cart/cartSlice";
-import ConfirmDialog from "../../utils/confirmDialog";
+// import ConfirmDialog from "../../utils/confirmDialog";
 import { RxCross2 } from "react-icons/rx";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 export type TTodoCartProps = {
     cart: {
@@ -23,20 +24,41 @@ const SingleCart = ({ cart }: TTodoCartProps) => {
 
     const dispatch = useAppDispatch();
 
+    // const handleDelete = (cartId: string) => {
+    //     toast.custom((t) => (
+    //       <ConfirmDialog
+    //         message="Remove from cart?"
+    //         description="Are you sure you want to remove this item from your cart?"
+    //         onCancel={() => toast.dismiss(t?.id as string)}
+    //         onConfirm={() => {
+    //           dispatch(removeFromCart(cartId));
+    //           toast.success("The item has been removed from your cart.");
+    //           toast.dismiss(t?.id);
+    //         }}
+    //       />
+    //     ));
+    //   };
+
     const handleDelete = (cartId: string) => {
-        toast.custom((t) => (
-          <ConfirmDialog
-            message="Remove from cart?"
-            description="Are you sure you want to remove this item from your cart?"
-            onCancel={() => toast.dismiss(t?.id)}
-            onConfirm={() => {
-              dispatch(removeFromCart(cartId));
-              toast.success("The item has been removed from your cart.");
-              toast.dismiss(t?.id);
-            }}
-          />
-        ));
-      };
+      Swal.fire({
+        title: "Remove from cart?",
+        text: "Are you sure you want to remove this item from your cart?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, remove it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(removeFromCart(cartId));
+          Swal.fire(
+            "Removed!",
+            "The item has been removed from your cart.",
+            "success"
+          );
+        }
+      });
+    };
 
       const handleIncrease = (cartId: string) => {
         dispatch(incrementQuantity(cartId));

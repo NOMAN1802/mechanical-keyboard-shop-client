@@ -5,7 +5,8 @@ import { toast } from "sonner";
 export interface IProduct {
   _id: string;
   image: string;
-  name: string;
+  title: string;
+  // name: string;
   brand: string;
   availableQuantity: number;
   price: number;

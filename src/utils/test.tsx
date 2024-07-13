@@ -65,7 +65,7 @@
 
 // export const baseApi = createApi({
 //   reducerPath: "baseApi",
-//   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
+//   baseQuery: fetchBaseQuery({ baseUrl: "https://click-craft-server.vercel.app/api" }),
 //   tagTypes: ["products"],
 //   endpoints: (builder) => ({
 //     getProducts: builder.query({

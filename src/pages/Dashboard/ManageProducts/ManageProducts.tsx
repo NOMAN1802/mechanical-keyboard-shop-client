@@ -4,6 +4,7 @@ import Heading from '../../../components/Heading/Heading';
 import { useGetProductsQuery } from '../../../redux/api/baseApi';
 import ManageProductRow from './ManageProductRow';
 import PageTitle from '../../../components/PageTitle/PageTitle';
+import { TProduct } from '../../../types';
 
 const ManageProducts = () => {
   const location = useLocation();
@@ -44,7 +45,7 @@ const ManageProducts = () => {
             </thead>
             {/* Body */}
             <tbody className="text-slate-700">
-              {products?.data?.map((product) => (
+              {products?.data?.map((product: TProduct) => (
                 <ManageProductRow key={product._id} product={product} />
               ))}
             </tbody>

@@ -6,11 +6,13 @@ import { FaSync, FaTrash } from 'react-icons/fa';
 import UpdateProductModal from '../../../components/Modal/UpdateProductModal';
 import { toast } from 'sonner';
 import { useDeleteProductMutation } from '../../../redux/api/baseApi';
-// import { TProduct } from '../../../types';
+import { TProduct } from '../../../types';
 
+interface ManageProductRowProps {
+  product: TProduct;
+}
 
-
-const ManageProductRow = ({ product }) => {
+const ManageProductRow: React.FC<ManageProductRowProps> = ({ product }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [deleteProduct] = useDeleteProductMutation();

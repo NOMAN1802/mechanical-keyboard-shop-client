@@ -1,17 +1,41 @@
-import React, { useEffect, useState } from 'react';
 import Marquee from 'react-fast-marquee';
 
 const Collaboration = () => {
-    const [companies, setCompanies] = useState([]);
-    useEffect(()=>{
-        fetch(('/JSON/companies.json'))
-        .then(res=>res.json())
-        .then(data=>setCompanies(data))
-    },[])
+
+    const companies = [
+        {
+            id: 1,
+            icon: "/rog.png"
+        },
+        {
+            id: 2,
+            icon: "/razer.png"
+        },
+      {
+          id: 3,
+            icon: "/rapoo .png"
+        },
+        {
+            id: 4,
+            icon: "/logitech.png"
+        },{
+            id: 5,
+            icon: "/monsGreek.png"
+        },{
+            id: 6,
+            icon: "/gigabyte.png"
+        },{
+
+            id: 7,
+            icon: "/A4Tech-Logo.png"
+        }
+    ]
+    
+  
     return (
         <div className='max-w-screen-xl md:mx-auto mx-7 my-20'>
-            <h1 className='text-center text-xl text-blue-950 font-semibold uppercase'>
-                We collaborate with <span className='text-cyan-500'>10+</span> Leading universities & companies
+            <h1 className='text-center text-xl text-slate-800 font-semibold uppercase'>
+                We collaborate with <span className='text-slate-500'>10+</span> companies
             </h1>
             <div className='my-10 md:mx-96'>
                 <Marquee className=''>

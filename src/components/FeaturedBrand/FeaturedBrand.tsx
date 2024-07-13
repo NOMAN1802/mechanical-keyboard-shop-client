@@ -23,6 +23,14 @@ const FeaturedBrand = () => {
           logo: "/monsGreek.png",
           alt: "MonsGreek Logo",
         },
+        {
+          logo: "/A4Tech-Logo.png",
+          alt: "A4Tech Logo",
+        },
+        {
+          logo: "/gigabyte.png",
+          alt: "Gigabyte Logo",
+        },
       ];
       
 

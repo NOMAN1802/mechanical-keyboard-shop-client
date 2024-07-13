@@ -6,10 +6,11 @@ import img3 from '../../assets/Slider/slider-3.jpg';
 import img4 from '../../assets/Slider/slider-4.jpg';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import SliderText from './SliderText';
+import { CSSProperties } from 'react';
 
 const Slider = () => {
 
-  const arrowStyles = {
+  const arrowStyles : CSSProperties = {
     position: 'absolute',
     zIndex: 2,
     top: 'calc(50% - 15px)',
