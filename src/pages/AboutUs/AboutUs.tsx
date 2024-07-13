@@ -1,6 +1,6 @@
 import Container from "../../components/Container/Container";
-import FeaturedBrand from "../../components/FeaturedBrand/FeaturedBrand";
 import PageTitle from "../../components/PageTitle/PageTitle";
+import CountUp from 'react-countup';
 const AboutUs = () => {
     return (
         <Container>
@@ -24,7 +24,7 @@ const AboutUs = () => {
                     </p>
                 </div>
             </div>
-            <div className='my-4 bg-blue-950 text-white'>
+            <div className='my-4 bg-slate-800 text-slate-100'>
                 <div className='max-w-screen-xl md:mx-auto my-10 mx-5'>
                     <h1 className='text-center text-4xl py-10'>Our global community and our course <br /> catalog get bigger every day</h1>
                     <div className='grid md:grid-cols-4 grid-cols-1 justify-items-center py-10 gap-10 text-center'>
@@ -36,7 +36,7 @@ const AboutUs = () => {
                                 >
                                 </CountUp>+
                             </h1>
-                            <h1>Hours of Learning</h1>
+                            <h1>Product Sells</h1>
                         </div>
                         <div>
                             <h1 className='text-4xl'>
@@ -46,7 +46,7 @@ const AboutUs = () => {
                                 >
                                 </CountUp>+
                             </h1>
-                            <h1>Enrolled Learning</h1>
+                            <h1>Collaborated Brands</h1>
                         </div>
                         <div>
                             <h1 className='text-4xl'>
@@ -56,7 +56,7 @@ const AboutUs = () => {
                                 >
                                 </CountUp>+
                             </h1>
-                            <h1>Online Instructor</h1>
+                            <h1>Collaborated Companies</h1>
                         </div>
                         <div>
                             <h1 className='text-4xl'>100%</h1>
@@ -67,9 +67,6 @@ const AboutUs = () => {
                 </div>
             </div>
             
-            <div>
-                <FeaturedBrand/>
-            </div>
 
         </Container>
     );
