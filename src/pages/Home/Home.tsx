@@ -4,6 +4,7 @@ import FeaturedBrand from "../../components/FeaturedBrand/FeaturedBrand";
 import FeaturedProducts from "../../components/FeaturedProducts/FeaturedProducts";
 import Service from "../../components/Service/Service";
 import Slider from "../../components/Slider/Slider";
+import Specialty from "../../components/Specialty/Specialty";
 import Testimonials from "../../components/Testimonials/Testimonials";
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
             <FeaturedBrand/>
             <Testimonials/>
             <ExtraSection/>
+            <Specialty/>
         </Container>
     );
 };
