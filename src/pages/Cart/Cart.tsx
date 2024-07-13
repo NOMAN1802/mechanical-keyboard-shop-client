@@ -86,7 +86,7 @@ const Cart = () => {
               Your product cart is empty
             </p>
             <Link to="/products">
-              <button className="bg-darkText text-slate-100 py-2 px-6 rounded-md hover:bg-slate-800 duration-200">
+              <button className="bg-darkText text-slate-600 py-2 px-6 rounded-md hover:bg-slate-800 duration-200">
                 Return to Shop
               </button>
             </Link>

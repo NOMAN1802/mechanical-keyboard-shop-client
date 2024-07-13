@@ -22,9 +22,11 @@ const CheckOut = () => {
     errorMessage = error.data.message;
   }
 
-  // handle form change
+  // Calculate total price with potential shipping fee
+  const shippingFee = totalOrderPrice < 200 ? totalOrderPrice * 0.05 : 0;
+  const totalPriceWithShipping = totalOrderPrice + shippingFee;
 
-  // handle place order
+  // Handle form submission
   const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -56,10 +58,10 @@ const CheckOut = () => {
             color: "#fff",
           },
         });
+        // Reset cart and navigate to confirmation page
+        dispatch(resetCart());
+        navigate("/confirm-order");
       }
-      // cart reset
-      dispatch(resetCart());
-      navigate("/confirm-order");
     } catch (error) {
       toast.error(errorMessage || "Failed to place order", {
         duration: 1500,
@@ -73,8 +75,7 @@ const CheckOut = () => {
 
   return (
     <Container>
-        <PageTitle heading="Check out page" subHeading="Provide valid information"/>
-
+      <PageTitle heading="Check out page" subHeading="Provide valid information" />
       <div className="md:flex items-start gap-8">
         <div className="md:w-1/2 w-full rounded-lg p-4">
           <div className="w-full">
@@ -83,11 +84,11 @@ const CheckOut = () => {
                 <FaMapMarkerAlt className="text-headerText -mt-4 text-4xl" />
               </div>
               <div>
-                <h2 className="text-3xl mb-1 font-bold">
+                <h2 className="text-4xl mb-1 font-semibold">
                   Product Delivery Information
                 </h2>
                 <h2 className="tracking-widest mb-7">
-                  We will deliver your order to this address
+                  Product will be delivered to your address
                 </h2>
               </div>
             </div>
@@ -157,23 +158,30 @@ const CheckOut = () => {
             </form>
           </div>
         </div>
-        <div className="md:w-1/2 w-full rounded-lg p-4">
+        <div className="md:w-1/2 w-full rounded p-4">
           <div className="border md:w-8/12 flex justify-center md:mt-48 items-center border-dashed py-2 mb-4 px-3 mx-auto rounded-md border-headerText">
             <div>
-              <h2 className="rounded-md font-medium text-lg p-2 mb-2 text-center">
-                Order Total: ${totalOrderPrice.toFixed(2)}
+              <h2 className="rounded-md font-medium text-xl p-2 mb-2 text-center">
+                Product Price: ${totalOrderPrice.toFixed(2)}
               </h2>
-              <h2 className="rounded-md p-2 text-base mb-2 text-center">
-                Free Shipping on 200 and above. Just <br /> for you.{" "}
-                <NavLink
-                  to="/products"
+              <h2 className="rounded-md font-medium text-xl p-2 mb-2 text-center">
+                Shipping Fee: ${shippingFee.toFixed(2)}
+              </h2>
+              <h2 className="rounded-md font-medium text-xl p-2 mb-2 text-center">
+                Total Price: ${totalPriceWithShipping.toFixed(2)}
+              </h2>
+              <h2 className="rounded p-2 text-slate-600 mb-2 text-center">
+                Free Shipping on orders of $200 and above. Just <br /> for you.
+              </h2>
+              <NavLink to="/products">
+                <p
                   className={
-                    "text-headerText font-bold hover:underline duration-200"
+                    "text-slate-800 text-center font-bold hover:underline duration-200"
                   }
                 >
                   Order More Products
-                </NavLink>
-              </h2>
+                </p>
+              </NavLink>
             </div>
           </div>
         </div>

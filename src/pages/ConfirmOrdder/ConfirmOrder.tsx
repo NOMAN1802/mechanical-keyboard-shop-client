@@ -10,7 +10,7 @@ const ConfirmOrder = () => {
     <Container>
       <PageTitle heading="Order Confirmation" subHeading="Congratulations! Your order was placed successfully" />
       <div className="w-full h-screen bg-slate-100">
-        <div className="flex justify-center items-center flex-col mt-24">
+        <div className="flex justify-center items-center flex-col ">
           <motion.div
             className="flex justify-center items-center bg-headerText rounded-full w-32 h-32"
             initial={{ scale: 0 }}
@@ -25,7 +25,7 @@ const ConfirmOrder = () => {
           </h2>
           </motion.div>
 
-          <NavLink to="/" className="my-6">
+          <NavLink to="/" className="my-12">
           <motion.div>
           <Button label="Back To Home"/>
           </motion.div>

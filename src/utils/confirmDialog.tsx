@@ -3,14 +3,14 @@
 
 const ConfirmDialog = ({ message, description, onConfirm, onCancel }: any) => {
   return (
-    <div>
-      <h4>{message}</h4>
-      <p>{description}</p>
-      <div className="flex justify-end space-x-2 mt-4">
-        <button className="px-4 py-2 bg-slate-300 text-black" onClick={onCancel}>
+    <div className="bg-slate-400 rounded">
+      <h4 className="text-center text-slate-100">{message}</h4>
+      <p  className="text-center text-slate-100">{description}</p>
+      <div className="flex justify-center space-x-2 p-4">
+        <button className="p-2 bg-slate-600 text-slate-100 rounded" onClick={onCancel}>
           Cancel
         </button>
-        <button className="px-4 py-2 bg-red-600 text-white" onClick={onConfirm}>
+        <button className="p-2 bg-red-500 text-slate-100 rounded" onClick={onConfirm}>
           Yes, remove it!
         </button>
       </div>
