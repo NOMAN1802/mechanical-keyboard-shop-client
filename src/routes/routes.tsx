@@ -37,10 +37,16 @@ const router = createBrowserRouter([
                 path: '/confirm-order',
                 element:<ConfirmOrder/>
               },
-            {
+            // {
+            //     path: "/products/:id",
+            //     element: <ProductDetails />,
+            //     loader: ({params}) => fetch(`https://key-craft.vercel.app/api/products/${params.id}`)
+            //   },
+
+              {
                 path: "/products/:id",
                 element: <ProductDetails />,
-                loader: ({params}) => fetch(`https://click-craft-server.vercel.app/api/products/${params.id}`)
+                
               },
             {
                 path:'/about-us',

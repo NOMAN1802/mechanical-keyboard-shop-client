@@ -6,8 +6,11 @@ interface StarRatingProps {
 }
 
 const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
-  const fullStars = Math.floor(rating);
-  const halfStars = rating % 1 !== 0 ? 1 : 0;
+  // Ensure rating is a valid number between 0 and 5
+  const validRating = Number.isFinite(rating) ? Math.max(0, Math.min(rating, 5)) : 0;
+
+  const fullStars = Math.floor(validRating);
+  const halfStars = validRating % 1 !== 0 ? 1 : 0;
   const emptyStars = 5 - fullStars - halfStars;
 
   return (

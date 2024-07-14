@@ -116,7 +116,7 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ handleSubmit, loa
           </div>
         </div>
 
-        <div className='flex justify-between gap-2'>
+        
           <div className='space-y-1 text-sm'>
             <label htmlFor='image' className='block text-gray-600'>
               Image URL
@@ -130,7 +130,7 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ handleSubmit, loa
             />
             {errors.image && <p className='text-red-600'>Image URL is required</p>}
           </div>
-        </div>
+        
       </div>
 
       <div className='mt-6'>

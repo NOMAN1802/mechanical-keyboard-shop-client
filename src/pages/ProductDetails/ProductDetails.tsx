@@ -1,31 +1,24 @@
-import { useLoaderData } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import Container from "../../components/Container/Container";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { toast } from "sonner";
 import StarRating from "../../components/StarRating/StarRating";
+import { useGetProductQuery } from "../../redux/api/baseApi";
 
-type Product = {
-  data: {
-    _id: string;
-    name: string;
-    title: string;
-    image: string;
-    price: number;
-    rating: number;
-    category: string;
-    description: string;
-    availableQuantity: number;
-    brand: string;
-  };
-};
 
 const ProductDetails = () => {
-  const product: Product | undefined = useLoaderData() as Product | undefined;
-  const { title, image, price, rating, category, description, availableQuantity, brand } = product?.data || {};
+
+  const { id } = useParams();
+
+  const { data: product } = useGetProductQuery(id);
 
   const dispatch = useAppDispatch();
+ 
+  const { title, image, price, rating, category, description, availableQuantity, brand } = product?.data || {};
+
+  // const dispatch = useAppDispatch();
 
   const handleAddToCart = () => {
     if (product) {
@@ -69,7 +62,7 @@ const ProductDetails = () => {
                 </h2>
                 <h2 className="ml-4 text-xl mt-10 flex gap-2">
                   <span className="font-bold">Rating:</span>{" "}
-                  <StarRating rating={rating as number} />
+                  <StarRating rating={rating || 0} />
                 </h2>
               </div>
             </div>

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://click-craft-server.vercel.app/api" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://key-craft.vercel.app/api" }),
   tagTypes: ["products"],
   endpoints: (builder) => ({
     getProducts: builder.query({
@@ -13,6 +13,14 @@ export const baseApi = createApi({
       }),
       providesTags: ["products"],
     }),
+    //* Get Single product
+    getProduct: builder.query({
+        query: (id) => ({
+          url: `/products/${id}`,
+          method: "GET",
+        }),
+        providesTags: ["products"],
+      }),
     addProduct: builder.mutation({
       query: (data) => {
         console.log("inside base api", data);
@@ -54,4 +62,4 @@ export const baseApi = createApi({
   }),
 });
 
-export const { useGetProductsQuery, useAddProductMutation, useUpdateProductMutation, useDeleteProductMutation,useAddOrderMutation } = baseApi;
+export const { useGetProductsQuery,useGetProductQuery, useAddProductMutation, useUpdateProductMutation, useDeleteProductMutation,useAddOrderMutation } = baseApi;
